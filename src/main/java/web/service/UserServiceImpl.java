@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import web.dao.UserDao;
 import web.model.User;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -17,7 +18,27 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @Transactional
     public List<User> getAllUsers() {
         return userDao.getAllUsers();
     }
+
+    @Override
+    @Transactional
+    public void saveUsers(User user) {
+        userDao.saveUsers(user);
+    }
+
+    @Override
+    @Transactional
+    public User getUserById(Long id) {
+        return userDao.getUserById(id);
+    }
+
+    @Override
+    @Transactional
+    public void deleteUserById(Long id) {
+        userDao.deleteUserById(id);
+    }
+
 }
